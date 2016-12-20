@@ -25,7 +25,7 @@ call vundle#rc()
 
 " let Vundle manage Vundle  
 " *** Download vundle : git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-Bundle 'zheng39562/vimplugin'
+Bundle 'lp112124/vimplugin'
 Bundle 'L9'  
 Bundle 'A.vim'
 "Bundle 'minibufexplorerpp'
