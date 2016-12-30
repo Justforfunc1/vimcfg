@@ -2,5 +2,8 @@
 	tools 是基本的vim插件的安装包 
 
 ## 注意事项
-	cscope安装时可能会存在报错 请先安装cscope依赖库
+	cscope安装时可能会存在报错 请先安装cscope依赖库		
+	yum install ncurses-devel
+	yum install flex
+	yum install byacc
 	如果是新手朋友 请百度安装教程 安装完成之后将相关插件所需的文件拷贝在~/.vim 目录下 
