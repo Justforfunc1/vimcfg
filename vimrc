@@ -174,8 +174,8 @@ noremap <F6> <esc>
 noremap <F7> :bp<cr>
 noremap <F8> :bn<cr>
 noremap <F9> <esc>:NERDTreeToggle<CR>
-noremap <F10> <esc>
-noremap <F11> <esc>
+noremap <F10> <esc>:call SetCalssComments()<CR>
+noremap <F11> <esc>:call SetComments()<CR>
 noremap <F12> <esc>
 "
 "
