@@ -6,7 +6,7 @@ let loaded_myvim = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! Initialization()
 	if( IsIDE() == 1 ) 
-		call UpdateCscopeInfo()
+"		call UpdateCscopeInfo()
 	endif
 endfunction
 
@@ -33,7 +33,7 @@ function! SetTitle()
 	call add( titleList, " \\note	注意事项： " )
 	call add( titleList, "" )
 	call add( titleList, "\\version " )
-	call add( titleList, "* \\author lp112124@163.com" )
+	call add( titleList, "* \\author Allen.L" )
 
     if &filetype == 'cpp'
 		let curList = 1

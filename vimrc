@@ -1,6 +1,8 @@
 " \file vimrc config file.
 "
-" \author lp112124@163.com
+" \author Allen.L
+" \version: 1.0.0
+"
 " \note I use block to split settings.Example:coding settings only set syntax of coding.
 " \note code comments explains code of next line.
 " \note Be attention: don't use map.Because map is recursion 
@@ -23,9 +25,10 @@ call vundle#rc()
 
 " let Vundle manage Vundle  
 " *** Download vundle : git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-Bundle 'lp112124/vimplugin'
+Bundle 'zheng39562/vimplugin'
 Bundle 'L9'  
 Bundle 'A.vim'
+Bundle 'vim-scripts/DoxygenToolkit.vim'
 "Bundle 'minibufexplorerpp'
 Bundle 'kien/ctrlp.vim'
 "Plugin 'tacahiroy/ctrlp-funky'
@@ -135,6 +138,25 @@ set sessionoptions+=sesdir
 set tags=tags;	
 set tags+=./tags,tags,../tags,../../tags
 
+" set DoxygenToolkit"
+let g:DoxygenToolkit_briefTag_funcName = "yes"
+let g:DoxygenToolkit_commentType = "C++"
+let g:DoxygenToolkit_briefTag_pre = "\\brief "
+let g:DoxygenToolkit_templateParamTag_pre = "\\tparam "
+let g:DoxygenToolkit_paramTag_pre = "\\param "
+let g:DoxygenToolkit_returnTag = "\\return "
+let g:DoxygenToolkit_fileTag = "\\file "
+let g:DoxygenToolkit_dateTag = "\\date "
+let g:DoxygenToolkit_authorTag = "\\author "
+let g:DoxygenToolkit_versionTag = "\\version "
+let g:DoxygenToolkit_blockTag = "\\name "
+let g:DoxygenToolkit_classTag = "\\class "
+let g:DoxygenToolkit_blockTag = "\\note "
+let g:DoxygenToolkit_authorName = "Allen.L, lp112124@163.com"
+let g:doxygen_enhanced_color = 1
+map v :Dox
+map b :DoxBlock
+
 " set tagslist
 let Tlist_Ctags_Cmd = '/usr/bin/ctags'
 let Tlist_Use_Right_Window = 1
@@ -146,8 +168,9 @@ if $VIM_HATE_SPACE_ERRORS != '0'
     let c_space_errors=1 
 	endif 
 map t :TlistToggle
-map o :TlistOpen
+map	z :TlistOpen
 map s :ts
+
 
 " set omnicppcomplete
 let OmniCpp_MayCompleteDot=1
