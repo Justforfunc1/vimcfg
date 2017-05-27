@@ -18,6 +18,7 @@ set term=screen
 " :bundlesearch(!) foo - search(or refresh cache first) for foo   
 " :bundleclean(!)      - confirm(or auto-approve) removal of unused bundles  
 set nocompatible              " be improved  
+set backspace=indent,eol,start
 filetype off                  " required!  
 
 set rtp+=~/.vim/bundle/vundle/
@@ -25,16 +26,20 @@ call vundle#rc()
 
 " let vundle manage vundle  
 " *** download vundle : git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-bundle 'lp112124/vimplugin'
-bundle 'l9'  
-bundle 'a.vim'
-bundle 'vim-scripts/doxygentoolkit.vim'
+Bundle 'lp112124/vimplugin'
+Bundle 'L9'  
+Bundle 'A.vim'
+Bundle 'ctrlpvim/ctrlp.vim'
+Bundle 'scrooloose/nerdtree'
+Bundle 'vim-scripts/molokai'
+Bundle 'vim-syntastic/syntastic'
+Bundle 'vim-scripts/omnicppcomplete'
+"Bundle 'vim-scripts/gdbmgr'
+"Bundle 'vim-scripts/doxygentoolkit.vim'
 "bundle 'minibufexplorerpp'
-bundle 'kien/ctrlp.vim'
 "plugin 'tacahiroy/ctrlp-funky'
 "plugin 'itchyny/lightline.vim'
 "plugin 'hallison/vim-markdown'
-bundle 'scrooloose/nerdtree'
 "plugin 'jiangmiao/auto-pairs'
 "plugin 'ervandew/supertab'
 "plugin 'kshenoy/vim-signature'
@@ -44,37 +49,29 @@ bundle 'scrooloose/nerdtree'
 "plugin 'tomtom/tlib_vim'
 "plugin 'garbas/vim-snipmate'
 "plugin 'vim-scripts/omnicppcomplete'
-bundle 'vim-scripts/molokai'
 "plugin 'vim-scripts/vcscommand.vim'
 
 "
 " vundle
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-filetype on
+
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " my variables
 "
-"
-let mapleader = "-"
-let maplocalleader = ","
-
-let g:miside=0
-let g:iswindows=0
-"
-" my variables
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" header
 "
 run plugin/my.vim
 
+filetype on
+filetype plugin on
+
 syntax on                  " syntax hightlighting.
 
-filetype plugin indent on
+let mapleader = "-"
+let maplocalleader = ","
 
+let g:mIsIDE = 0
 "
-" header
+" my variables
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -102,14 +99,14 @@ set fileencodings=utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 " 需要使用gbk时 使用cp936. 但通常而言不推荐。
 "set encoding=cp936
 set encoding=utf-8
-set langmenu=zh_cn.utf-8
-language message zh_cn.utf-8
+set langmenu=zh_CN.UTF-8
+language message zh_CN.UTF-8
 
 " statusline: file name,type,path and number of line.
-set statusline =filename:%f\ \ 
-set statusline +=filetype:%y\ \ 
-set statusline +=line:\ %l/%l\ \ 
-set statusline +=filepath:%.25f
+set statusline =Filename:%f\ \ 
+set statusline +=Filetype:%y\ \ 
+set statusline +=Line:\ %l/%l\ \ 
+set statusline +=Filepath:%.25F
 
 set autoread
 set autowrite
@@ -139,21 +136,6 @@ set tags=tags;
 set tags+=./tags,tags,../tags,../../tags
 
 " set doxygentoolkit"
-let g:doxygentoolkit_brieftag_funcname = "yes"
-let g:doxygentoolkit_commenttype = "c++"
-let g:doxygentoolkit_brieftag_pre = "\\brief "
-let g:doxygentoolkit_templateparamtag_pre = "\\tparam "
-let g:doxygentoolkit_paramtag_pre = "\\param "
-let g:doxygentoolkit_returntag = "\\return "
-let g:doxygentoolkit_filetag = "\\file "
-let g:doxygentoolkit_datetag = "\\date "
-let g:doxygentoolkit_authortag = "\\author "
-let g:doxygentoolkit_versiontag = "\\version "
-let g:doxygentoolkit_blocktag = "\\name "
-let g:doxygentoolkit_classtag = "\\class "
-let g:doxygentoolkit_blocktag = "\\note "
-let g:doxygentoolkit_authorname = "allen.l, lp112124@163.com"
-let g:doxygen_enhanced_color = 1
 
 " set tagslist
 let tlist_ctags_cmd = '/usr/bin/ctags'
@@ -164,10 +146,7 @@ let tlist_sort_type = 'name'
 let tlist_gainfocus_on_toggleopen = 1
 if $vim_hate_space_errors != '0' 
     let c_space_errors=1 
-	endif 
-map t :tlisttoggle
-map	z :tlistopen
-map s :ts
+endif 
 
 
 " set omnicppcomplete
@@ -373,3 +352,12 @@ set laststatus=2
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" plugin : ctrlp-funky
+"
+let g:ctrlp_funky_matchtype = 'path' 
+let g:ctrlp_extensions = ['funky']  
+let g:ctrlp_funky_syntax_highlight = 1
+"
+" plugin : ctrlp-funky
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

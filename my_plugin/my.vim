@@ -6,7 +6,7 @@ let loaded_myvim = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! Initialization()
 	if( IsIDE() == 1 ) 
-"		call UpdateCscopeInfo()
+		call UpdateCscopeInfo()
 	endif
 endfunction
 
@@ -64,19 +64,22 @@ function! DefineHeadFile()
 endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! DefineCppFile()
-    call setline( 11, "#include \"".expand("%:t:r").".h\"" )
+    silent execute ":normal! G$"
+    call setline( line("." ), "#include \"".expand("%:t:r").".h\"" )
     silent execute ":normal! G$"
 endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! UpdateCscopeInfo()
 	let absolutePath=getcwd()	
-	silent! execute "! find . -iname '*.h' -or -iname '*.c' -or -iname '*.cpp' -or -iname '*.hpp'  > cscope.files" 
+"	silent! execute "! find . -iname '*.h' -or -iname '*.c' -or -iname '*.cpp' -or -iname '*.hpp'  > cscope.files" 
 	silent! execute "! cscope -bRq -I ".absolutePath."/src 2>>error.cs.log" 
 	silent! execute "cs add ".absolutePath."/cscope.out"
 endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! UpdateTags()
-	silent! execute "! find . -iname '*.c' -or -iname '*.cpp' -or -iname '*.hpp' -or -iname '*.h' | xargs ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --langmap=c++:+.inl tags "
+	silent! execute "! /usr/bin/rm -rf tags"
+	silent! execute "! touch tags"
+	silent! execute "! find . -iname '*.c' -or -iname '*.cpp' -or -iname '*.hpp' -or -iname '*.h' | xargs ctags --c++-kinds=+p --fields=+iaS --extra=+q --langmap=c++:+.inl -a tags "
 endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! DefineScriptFile()
