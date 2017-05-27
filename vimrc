@@ -167,18 +167,18 @@ let nerdtreewinpos='right'
 " noremap
 "
 "
-noremap <f1> <esc>:a<cr>
-noremap <f2> <esc>:cn<cr>
-noremap <f3> <esc>:cp<cr>
-noremap <f4> <esc>:<cr>
-noremap <f5> <esc>:call updatecscopeinfo()<cr>
-noremap <f6> <esc>:call updatetags()<cr>
-noremap <f7> :bp<cr>
-noremap <f8> :bn<cr>
-noremap <f9> <esc>:nerdtreetoggle<cr>
-noremap <f10> <esc>:call setcalsscomments()<cr>
-noremap <f11> <esc>:call setcomments()<cr>
-noremap <f12> <esc>
+noremap <F1> <esc>:A<cr>
+noremap <F2> <esc>:cn<cr>
+noremap <F3> <esc>:cp<cr>
+noremap <F4> <esc>:execute 'CtrlPFunky ' .expand('<cword>')<CR>
+noremap <F5> <esc>:call UpdateCscopeInfo()<cr>
+noremap <F6> <esc>:call UpdateTags()<cr>
+noremap <F7> :bp<cr>
+noremap <F8> :bn<cr>
+noremap <F9> <esc>:NERDTreeToggle<cr>
+noremap <F10> <esc>:call SetCalssComments()<cr>
+noremap <F11> <esc>:call SetComments()<cr>
+noremap <F12> <esc>
 "
 "
 " set
@@ -232,16 +232,16 @@ nnoremap <leader>cw :cw <CR>
 " inoremap
 "
 inoremap jk <esc> 
-inoremap ) ()<Esc>i          
-inoremap ( ()<Esc>i  
-inoremap { {}<Esc>i  
-inoremap } {}<Esc>i  
-inoremap [ []<Esc>i  
-inoremap ] []<Esc>i  
-inoremap < <><Esc>i  
-inoremap > <><Esc>i  
-inoremap " ""<Esc>i  
-inoremap ' ''<Esc>i 
+"inoremap )()<Esc>i          
+"inoremap (()<Esc>i  
+"inoremap {{}<Esc>i  
+"inoremap }{}<Esc>i  
+"inoremap [[]<Esc>i  
+"inoremap ][]<Esc>i  
+"inoremap <<><Esc>i  
+"inoremap ><><Esc>i  
+"inoremap """<Esc>i  
+"inoremap '''<Esc>i 
 
 "
 " inoremap
