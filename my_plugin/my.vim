@@ -6,7 +6,7 @@ let loaded_myvim = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! Initialization()
 	if( IsIDE() == 1 ) 
-		call UpdateCscopeInfo()
+"		call UpdateCscopeInfo()
 	endif
 endfunction
 
@@ -36,6 +36,7 @@ function! SetTitle()
 	call add( titleList, "\\version 1.0" )
 	call add( titleList, "* \\author Allen.L" )
 	call add( titleList, "* \\date ".strftime("%Y-%m-%d") )
+	call add( titleList, "* \\last modified TIMESTAMP")
 
     if &filetype == 'cpp' || &filetype == 'cc' || &filetype == 'c'
 		let curList = 1
@@ -64,8 +65,7 @@ function! DefineHeadFile()
 endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! DefineCppFile()
-    silent execute ":normal! G$"
-    call setline( line("." ), "#include \"".expand("%:t:r").".h\"" )
+    call setline( 13, "#include \"".expand("%:t:r").".h\"" )
     silent execute ":normal! G$"
 endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -85,15 +85,20 @@ endfunction
 function! DefineScriptFile()
     execute ":normal! G$"
 	if &filetype == 'lua'
-		call setline( line("."), '-- '."Copyright (C) Allen.L, CloudFlare Inc." )
+		call setline( line("."), '-- '."Copyright (C) Allen.L, CloudFlare Inc. \\last Modified TIMESTAMP" )
 	elseif &filetype == 'sh'
 		call setline( line("."), '#'."!/bin/bash" )
-		call setline( line(".")+1, '#' )
+		call setline( line(".")+1, '#'."\\last modified TIMESTAMP" )
 		call setline( line(".")+2, '#'."brief：" )
 	else
 		echom "filetype is ".&filetype
 	endif
 
+    execute ":normal! G$"
+endfunction
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! SetLastModifiedTime()
+	execute ":normal! G$"
     execute ":normal! G$"
 endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

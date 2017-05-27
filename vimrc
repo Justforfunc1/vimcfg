@@ -1,7 +1,7 @@
 " \file vimrc config file.
 "
 " \author allen.l
-" \version: 1.1.0
+" \version: 1.2.0
 "
 " \note i use block to split settings.example:coding settings only set syntax of coding.
 " \note code comments explains code of next line.
@@ -34,6 +34,8 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'vim-scripts/molokai'
 Bundle 'vim-syntastic/syntastic'
 Bundle 'vim-scripts/omnicppcomplete'
+Bundle 'tacahiroy/ctrlp-funky'
+Bundle 'vim-scripts/TimeStamp.vim'
 "Bundle 'vim-scripts/gdbmgr'
 "Bundle 'vim-scripts/doxygentoolkit.vim'
 "bundle 'minibufexplorerpp'
@@ -161,24 +163,29 @@ let omnicpp_selectfirstitem = 2
 let omnicpp_displaymode =1
 
 " set nerdtree
-let nerdtreewinpos='right'
+let NERDTreeWinPos='right'
+
+" set timetamp
+set modelines=20   
+let timestamp_regexp = '\v\C%(<\last %([cC]hanged?|[Mm]odified)\s+)@<=.*$'
+let g:timestamp_rep = '%Y-%m-%d %H:%M:%S'
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " noremap
 "
 "
-noremap <F1> <esc>:A<cr>
-noremap <F2> <esc>:cn<cr>
-noremap <F3> <esc>:cp<cr>
-noremap <F4> <esc>:execute 'CtrlPFunky ' .expand('<cword>')<CR>
-noremap <F5> <esc>:call UpdateCscopeInfo()<cr>
-noremap <F6> <esc>:call UpdateTags()<cr>
-noremap <F7> :bp<cr>
-noremap <F8> :bn<cr>
-noremap <F9> <esc>:NERDTreeToggle<cr>
-noremap <F10> <esc>:call SetCalssComments()<cr>
-noremap <F11> <esc>:call SetComments()<cr>
-noremap <F12> <esc>
+noremap <F1> <esc>:A<CR>
+noremap <F2> <esc>:cn<CR>
+noremap <F3> <esc>:cp<CR>
+noremap <F4> <esc>:execute 'CtrlPFunky ' . expand('<cword>')<CR>
+noremap <F5> <esc>:call UpdateCscopeInfo()<CR>
+noremap <F6> <esc>:call UpdateTags()<CR>
+noremap <F7> :bp<CR>
+noremap <F8> :bn<CR>
+noremap <F9> <esc>:NERDTreeToggle<CR>
+noremap <F10> <esc>:call SetCalssComments()<CR>
+noremap <F11> <esc>:call SetComments()<CR>
+noremap <F12> <esc> 
 "
 "
 " set
@@ -197,6 +204,7 @@ noremap <leader>q <esc>:wqa<cr>
 " nnoremap
 "
 
+"nnoremap fu :CtrlPFunky
 nnoremap <leader>/ :nohl<CR>
 nnoremap <leader>h : verbose map<cr>
 
@@ -266,6 +274,10 @@ augroup Global_settings
     autocmd InsertEnter * se cul
 
 	autocmd VimEnter * call Initialization()
+	autocmd BufReadPost *
+	\ if line("'\"")>0&&line("'\"")<=line("$") |
+	\ exe "normal g'\"" |
+	\ endif
 augroup END
 
 augroup SetMyFileType
@@ -355,6 +367,9 @@ set laststatus=2
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " plugin : ctrlp-funky
 "
+let g:ctrlp_map = '<c-p>'     "hotkey Ctrl+p open ctrlp plugin
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = '0'       "disable work path mode
 let g:ctrlp_funky_matchtype = 'path' 
 let g:ctrlp_extensions = ['funky']  
 let g:ctrlp_funky_syntax_highlight = 1
