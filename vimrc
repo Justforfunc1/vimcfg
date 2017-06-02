@@ -31,11 +31,20 @@ Bundle 'L9'
 Bundle 'A.vim'
 Bundle 'ctrlpvim/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/nerdcommenter'
 Bundle 'vim-scripts/molokai'
 Bundle 'vim-syntastic/syntastic'
 Bundle 'vim-scripts/omnicppcomplete'
 Bundle 'tacahiroy/ctrlp-funky'
 Bundle 'vim-scripts/TimeStamp.vim'
+Bundle 'vim-scripts/taglist.vim'
+Bundle 'Shougo/neocomplcache.vim'
+Bundle 'bling/vim-airline'
+Bundle 'drmingdrmer/xptemplate'
+Bundle 'vim-scripts/minibufexpl.vim'
+"Bundle 'vim-scripts/winmanager'
+"Bundle 'garbas/vim-snipmate'
+"Bundle 'ervandew/supertab'
 "Bundle 'vim-scripts/gdbmgr'
 "Bundle 'vim-scripts/doxygentoolkit.vim'
 "bundle 'minibufexplorerpp'
@@ -90,6 +99,14 @@ set autoindent
 set cindent
 set smartindent 
 set completeopt=menu,menuone
+"set foldmarker={,}
+"set foldmethod=marker
+"set foldmethod=indent
+"setlocal foldlevel=1
+set foldmethod=manual
+nnoremap <leader>mk :mkview<CR>
+nnoremap <leader>lv :loadview<CR>
+nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zC' : 'zO')<CR>
 
 " shiftwidth,tab,...
 set shiftwidth=4
@@ -135,45 +152,90 @@ set sessionoptions+=sesdir
 
 " set ctags
 set tags=tags;	
-set tags+=./tags,tags,../tags,../../tags
+set tags+=./tags,tags,../tags
 
 " set doxygentoolkit"
 
 " set tagslist
-let tlist_ctags_cmd = '/usr/bin/ctags'
-let tlist_use_right_window = 1
-let tlist_file_fold_auto_close = 1
-let tlist_show_one_file = 1
-let tlist_sort_type = 'name'
-let tlist_gainfocus_on_toggleopen = 1
+let Tlist_Ctags_Cmd = '/usr/bin/ctags'
+let Tlist_Use_Right_Window = 1
+let Tlist_File_Fold_Auto_Close = 1
+let	Tlist_Show_One_File = 1
+let Tlist_Sort_Type = 'name'
+let Tlist_GainFocus_On_ToggleOpen = 1
 if $vim_hate_space_errors != '0' 
     let c_space_errors=1 
 endif 
 
 
 " set omnicppcomplete
-let omnicpp_maycompletedot=1
-let omnicpp_maycompletearrow=1
-let omnicpp_maycompletescope=1
-let omnicpp_namespacesearch=1
-let omnicpp_globalscopesearch=1
-let omnicpp_defaultnamespace=["std","_glibcxx_std"]
-let omnicpp_showprototypeinabbr=1
-let omnicpp_selectfirstitem = 2
-let omnicpp_displaymode =1
+let OmniCpp_MayCompleteDot=1
+let OmniCpp_MayCompleteArrow=1
+let OmniCpp_MayCompleteScope=1
+let OmniCpp_NamespaceSearch=1
+let OmniCpp_GlobalScopeSearch=1
+let OmniCpp_DefaultNamespaces=["std","_glibcxx_std"]
+let OmniCpp_ShowPrototypeInAbbr=1
+let OmniCpp_SelectFirstItem=2
+let OmniCpp_DisplayMode =1
+let OmniCpp_LocalSearchDecl=1
 
 " set nerdtree
-let NERDTreeWinPos='right'
+"let NERDTreeWinPos='right'
 
 " set timetamp
 set modelines=20   
 let timestamp_regexp = '\v\C%(<\last %([cC]hanged?|[Mm]odified)\s+)@<=.*$'
 let g:timestamp_rep = '%Y-%m-%d %H:%M:%S'
 
+" set neocomplcache
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_smart_case = 1
+let g:neocomplcache_enable_camel_case_completion = 1
+let g:neocomplcache_enable_underbar_completion = 1
+let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+let g:neocomplcache_enable_auto_select = 1
+
+" set ariline
+"let g:airline_theme="molokai"
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#whitespace#enabled = 0
+let g:airline#extensions#whitespace#symbol = '!'
+if !exists('g:airline_symbols')
+	let g:airline_symbols = {}
+endif
+let g:airline_left_sep = ' '
+let g:airline_left_alt_sep = ' '
+let g:airline_right_sep = ' '
+let g:airline_right_alt_sep = ' '
+
+" set syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_enable_signs = 1
+let g:syntastic_always_populate_loc_list = 0
+let g:syntastic_auto_loc_list = 2	
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+let g:syntastic_enable_highlighting=1
+nnoremap <leader>ll :lopen<CR>
+nnoremap <leader>lc :lclose<CR>
+
+" set minibufexpl
+let g:miniBufExplMapWindowNavVim = 1 
+let g:miniBufExplMapWindowNavArrows = 1 
+let g:miniBufExplMapCTabSwitchBufs = 1 
+let g:miniBufExplModSelTarget = 1 
+
+
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " noremap
 "
 "
+nmap cS :%s/\s\+$//g<CR>:noh<CR>
+nmap cM :%s/\r$//g<CR>:noh<CR>
 noremap <F1> <esc>:A<CR>
 noremap <F2> <esc>:cn<CR>
 noremap <F3> <esc>:cp<CR>
@@ -184,8 +246,8 @@ noremap <F7> :bp<CR>
 noremap <F8> :bn<CR>
 noremap <F9> <esc>:NERDTreeToggle<CR>
 noremap <F10> <esc>:call SetCalssComments()<CR>
-noremap <F11> <esc>:call SetComments()<CR>
-noremap <F12> <esc> 
+noremap <F11> <esc>zfa{<CR>
+noremap <F12> <esc>:TlistToggle<cr> 
 "
 "
 " set

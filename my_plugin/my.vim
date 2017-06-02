@@ -77,9 +77,9 @@ function! UpdateCscopeInfo()
 endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! UpdateTags()
-	silent! execute "! /usr/bin/rm -rf tags"
+	silent! execute "! /bin/rm -rf tags"
 	silent! execute "! touch tags"
-	silent! execute "! find . -iname '*.c' -or -iname '*.cpp' -or -iname '*.hpp' -or -iname '*.h' | xargs ctags --c++-kinds=+p --fields=+iaS --extra=+q --langmap=c++:+.inl -a tags "
+	silent! execute "! ctags -R --c++-kinds=+p --fields=+iaS --extra=+q . --langmap=c++:+.inl -h +.inl "
 endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! DefineScriptFile()
