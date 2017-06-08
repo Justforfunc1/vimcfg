@@ -344,14 +344,15 @@ augroup END
 
 augroup SetMyFileType
 	autocmd!
-    autocmd BufNewFile,BufRead (*.(c|h|hpp|sh|lua)) setfiletype=corplus
+    autocmd BufNewFile,BufRead (*.(c|h|hpp|sh|lua|py)) setfiletype=corplus
 augroup END
 
 augroup SCRIPT_Group
 	autocmd!
     autocmd BufNewFile,BufRead *.sh setfiletype=shell
     autocmd BufNewFile,BufRead *.lua setfiletype=lua
-	autocmd BufNewFile *.sh,*.lua execute ":call DefineScriptFile()"
+    autocmd BufNewFile,BufRead *.py setfiletype=python
+	autocmd BufNewFile *.sh,*.lua,*.py execute ":call DefineScriptFile()"
 augroup END
 
 augroup C_and_CPP_Group

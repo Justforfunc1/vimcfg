@@ -90,6 +90,14 @@ function! DefineScriptFile()
 		call setline( line("."), '#'."!/bin/bash" )
 		call setline( line(".")+1, '#'."\\last modified TIMESTAMP" )
 		call setline( line(".")+2, '#'."brief：" )
+	elseif &filetype == 'python'
+		call setline( line("."), '#'."!/bin/env python" )
+		call setline( line(".")+1, '#'." -*- coding: utf-8 -*-" )
+		call setline( line(".")+2, "" )
+		call setline( line(".")+3, '""" ' )
+		call setline( line(".")+4, "* author Allen.L" )
+		call setline( line(".")+5, "* \\last modified TIMESTAMP" )
+		call setline( line(".")+6, '""" ' )
 	else
 		echom "filetype is ".&filetype
 	endif
