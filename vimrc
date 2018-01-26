@@ -26,7 +26,6 @@ call vundle#rc()
 
 " let vundle manage vundle  
 " *** download vundle : git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-Bundle 'lp112124/vimplugin'
 Bundle 'L9'  
 Bundle 'A.vim'
 Bundle 'ctrlpvim/ctrlp.vim'
@@ -41,8 +40,9 @@ Bundle 'vim-scripts/taglist.vim'
 Bundle 'Shougo/neocomplcache.vim'
 Bundle 'bling/vim-airline'
 Bundle 'drmingdrmer/xptemplate'
+Bundle 'vim-scripts/winmanager'
 Bundle 'vim-scripts/minibufexpl.vim'
-"Bundle 'vim-scripts/winmanager'
+"Bundle 'lp112124/vimplugin'
 "Bundle 'garbas/vim-snipmate'
 "Bundle 'ervandew/supertab'
 "Bundle 'vim-scripts/gdbmgr'
